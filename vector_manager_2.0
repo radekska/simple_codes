@@ -5,7 +5,7 @@
 using namespace std;
 
 
-/* vector managing program by using simple functions
+/*using simple functions to manage an vector of intigers
  * By Radoslaw Skalbania */
 
 
