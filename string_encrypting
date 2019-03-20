@@ -1,0 +1,47 @@
+#include<iostream>
+using namespace std;
+
+
+/* Program which encrypts the string "word" using range-based for loop
+ * By Radoslaw Skalbania */
+
+
+
+int main(){
+
+    string alfabet{"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'"};
+    string cipher {"1234567890!@#$%^&*()_+?><MNBVCXZLKJHGFDSAPOIUYTREWQ'"};
+
+    string word {};
+    string secret_word {};
+
+    cout <<"Type the word you want to enrypt: ";
+    getline(cin,word);
+    cout <<"Encrypting message..."<<endl;
+    for (char c: word){
+
+        if(isspace(c)){
+            secret_word+=" ";
+            goto end;
+        }
+        secret_word += cipher.at(alfabet.find(c));
+        end:
+        cout<<"";
+    }
+    word.clear();
+
+    for (char c: secret_word){
+        if (isspace(c)){
+            word +=" ";
+            goto end2;
+        }
+        word += alfabet.at(cipher.find(c));
+
+        end2:
+        cout<<"";
+    }
+
+    cout <<"Encrypted message: "<<secret_word<<endl;
+    cout <<"Decrypting message..."<<endl;
+    cout <<"Decrypted message: "<<word<<endl;
+}
