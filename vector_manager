@@ -1,0 +1,149 @@
+#include <vector>
+#include <iomanip>
+#include <iostream>
+using namespace std;
+
+/* Simple code, managing vector of integers
+ * By Radoslaw Skalbania */
+
+
+int main() {
+
+    vector <int> data_vec {};
+    int number {};
+    char choice {};
+
+
+    do{
+        cout<<"\nWelcome to my program!"<<endl;
+        cout<<"======================"<<endl;
+        cout<<"Press 'P' to print numbers."<<endl;
+        cout<<"Press 'C' to clean a list."<<endl;
+        cout<<"Press 'A' to add a number."<<endl;
+        cout<<"Press 'V' to check how many times same number occurs"<<endl;
+        cout<<"Press 'M' to display mean of numbers."<<endl;
+        cout<<"Press 'S' to print smallest number."<<endl;
+        cout<<"Press 'L' to print largest number."<<endl;
+        cout<<"Press 'Q' to exit the program."<<endl;
+        cout<<"======================"<<endl;
+        cout<<"Your choice: ";
+        cin>> choice;
+
+        switch (choice){
+            case 'a':
+            case 'A':
+                cout <<"Add a number: ";
+                cin >> number;
+
+                for (auto var: data_vec){
+                    if(var == number){
+                        cout <<"Sorry it's already in the list."<<endl;
+                        goto exit;
+                    }
+
+                }
+                cout << number << " added.";
+                data_vec.push_back(number);
+            exit:
+                break;
+
+            case 'p':
+            case 'P':
+                if (data_vec.size() == 0){
+                    cout <<"[] - the list is empty."<<endl;
+                }else {
+                    cout << "Thats your vector:" << endl;
+                    cout << "[ ";
+                    for ( auto val : data_vec ) {
+                        cout << val << " ";
+                    };
+                    cout << "]";
+                }
+                break;
+
+            case 'm':
+            case 'M': {
+                if(data_vec.size() == 0){
+                    cout << "Unable to calculate the mean - list is empty."<<endl;
+                }else {
+                    double mean{};
+                    double sum{};
+                    cout << "Mean of your vector's elements is:" << endl;
+                    for ( auto val : data_vec ) {
+                        sum = val + sum;
+                    };
+                    mean = sum / data_vec.size();
+                    cout << fixed << setprecision(2) << endl;
+                    cout << mean;
+                }
+                break;
+            }
+
+            case 's':
+            case 'S':   {
+                if(data_vec.size() == 0){
+                    cout << "Unable to determine smallest number - list is empty."<<endl;
+                }else {
+                    int min{};
+                    min = data_vec.at(0);
+                    for ( auto var: data_vec) {
+
+                        if (min > var) {
+                            min = var;
+                        };
+                    };
+                    cout << "The smallest number is: " << min << endl;
+                }
+                break;
+            }
+
+            case 'l':
+            case 'L': {  if(data_vec.size() == 0){
+                    cout << "Unable to determine the largest number - list is empty."<<endl;
+                }else {
+                    int max{};
+                    max = data_vec.at(0);
+                    for ( auto var: data_vec ) {
+
+                        if (max < var) {
+                            max = var;
+                        };
+                    };
+                    cout << "The largest number is: " << max << endl;
+                }
+                break;
+            }
+            case 'v':
+            case 'V': {
+                int count {};
+                cout << "Enter a number: ";
+                cin >> number;
+                for ( auto val: data_vec ) {
+                    if (val == number) {
+                        count++ ;
+                    };
+                }
+                cout <<"Number repeat's "<<count<<" time(s)"<<endl;
+                break;
+            }
+            case 'c':
+            case 'C':
+            {
+                data_vec.clear();
+                cout <<"List cleared."<<endl;
+                break;
+            }
+
+            case 'q':
+            case 'Q':
+                cout<<"Goodbye!"<<endl;
+                break;
+            default:
+                cout <<"Illegal choice! - try again."<<endl;
+
+        }
+
+    }while (choice != 'q' && choice != 'Q');
+
+    return 0;
+}
