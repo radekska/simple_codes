@@ -1,0 +1,201 @@
+#include <iostream>
+#include <vector>
+#include <iomanip>
+
+using namespace std;
+
+
+/* vector managing program by using simple functions
+ * By Radoslaw Skalbania */
+
+
+void print_menu( vector <int> &data_vec);
+
+void print_number( vector <int> &data_vec);
+
+void clear_data( vector <int> &data_vec);
+
+void add_number( vector <int> &data_vec);
+
+void small( vector <int> &data_vec);
+
+void large( vector <int> &data_vec);
+
+char upper_case(char &upper);
+
+void mean(vector <int> &data_vec);
+
+void how_many(vector <int> &data_vec);
+
+
+
+int main(){
+
+    vector <int> data_vec {};
+    print_menu(data_vec);
+    
+    return 0;
+};
+
+
+char upper_case(char &upper){
+
+    int a = toupper(upper);
+    upper = static_cast<char>(a);
+    return upper;
+
+};
+
+void large( vector <int> &data_vec){
+    int large = data_vec.at(0);
+
+    for ( auto vec: data_vec){
+
+        if (vec>=large){
+            large=vec;
+        }
+    }
+    cout<<"The largest number in vector is: "<<large<<endl;
+
+
+}
+
+
+void add_number(vector <int> &data_vec){
+
+    int number {};
+    cout<<"Add a number: ";
+    cin>> number;
+    for (auto var: data_vec){
+        if(var == number){
+            cout<<"Sorry it's already in the list."<<endl;
+            goto exit;
+        }
+
+    }
+    cout <<number<<" added!"<<endl;
+    data_vec.push_back(number);
+    exit:
+    EOF;
+
+};
+
+void print_number(vector <int> &data_vec){
+    cout<<"[ ";
+    for ( auto vec: data_vec){
+        cout<<vec<<" ";
+    };
+    cout<<"]";
+
+
+}
+
+void clear_data(vector <int> &data_vec){
+    data_vec.clear();
+    cout<<"Data cleared!"<<endl;
+}
+
+void small( vector <int> &data_vec){
+    int small = data_vec.at(0);
+
+    for ( auto vec: data_vec){
+
+        if (vec<=small){
+            small=vec;
+        }
+    }
+    cout<<"The smallest number in vector is: "<<small<<endl;
+
+}
+
+void how_many(vector <int> &data_vec){
+    int count {};
+    int number{};
+
+    cout <<"Enter the number: ";
+    cin >> number;
+    for (auto vec: data_vec){
+        if(vec==number){
+            count++;
+        }
+    }
+    cout<<"Number occured "<<count<< " time(s)"<<endl;
+};
+
+void mean(vector <int> &data_vec){
+
+    double mean {};
+    double sum {};
+
+    for ( size_t i = 0; i <data_vec.size() ; ++ i ) {
+        sum += data_vec.at(i);
+
+    }
+
+    mean = sum/data_vec.size();
+    cout<<fixed<<setprecision(2);
+    cout<<"Vector's mean is "<<mean<<endl;
+}
+
+
+void print_menu(vector <int> &data_vec){
+
+    char choice {};
+    do{
+        cout<<"\nWelcome to my program!"<<endl;
+        cout<<"======================"<<endl;
+        cout<<"Press 'P' to print numbers."<<endl;
+        cout<<"Press 'C' to clean a list."<<endl;
+        cout<<"Press 'A' to add a number."<<endl;
+        cout<<"Press 'V' to check how many times same number occurs"<<endl;
+        cout<<"Press 'M' to display mean of numbers."<<endl;
+        cout<<"Press 'S' to print smallest number."<<endl;
+        cout<<"Press 'L' to print largest number."<<endl;
+        cout<<"Press 'Q' to exit the program."<<endl;
+        cout<<"======================"<<endl;
+        cout<<"Your choice: ";
+        cin>> choice;
+        upper_case(choice);
+
+        switch (choice) {
+
+            case 'A':
+                add_number(data_vec);
+                break;
+
+            case 'P':
+                print_number(data_vec);
+                break;
+
+            case 'C':
+                clear_data(data_vec);
+                break;
+
+            case 'V':
+                how_many(data_vec);
+                break;
+
+            case 'M':
+                mean(data_vec);
+                break;
+
+            case 'S':
+                small(data_vec);
+                break;
+
+            case 'L':
+                large(data_vec);
+                break;
+
+            case 'Q':
+                cout<<"Byeeee"<<endl;
+                break;
+
+            default:
+                cout<<"Illegal choice! Try again."<<endl;
+
+        }
+
+    } while( choice != 'Q');
+
+}
