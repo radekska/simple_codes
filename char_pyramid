@@ -1,0 +1,48 @@
+#include<iostream>
+using namespace std;
+
+
+/* Building a char pyramid, using string and for loops
+ * By Radoslaw Skalbania */
+
+
+int main(){
+
+    string letters {};
+    string in_loop {};
+
+    cout<<"Type the word from which the pyramid will be built:"<<endl;
+    getline(cin,letters);
+
+    cout<<"That's your pyramid!"<<endl;
+    for ( size_t  j = 0; j<letters.size(); j++ ) {
+
+
+        in_loop += letters.at(j);
+
+        for ( int k = 0 ; k <letters.size()-j; k++ ) {
+            cout<<" ";
+        };
+
+        for ( size_t l =0; l < in_loop.size(); l++ ){
+            cout<<in_loop.at(l);
+        };
+
+        string in_loop2 {};
+        in_loop2 = in_loop;
+        in_loop2.erase(in_loop.size()-1);
+
+
+        if (in_loop2.size()>0) {
+            for ( size_t m = in_loop2.size(); m > 0; -- m ) {
+                cout << in_loop2.at(m-1);
+            }
+        }
+
+        cout << endl;
+
+
+    }
+
+    return 0;
+};
