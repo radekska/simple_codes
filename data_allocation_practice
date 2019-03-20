@@ -1,0 +1,78 @@
+#include <iostream>
+
+using namespace std;
+
+/* Data allocation practice - creating an array from two another
+ * By Radoslaw Skalbania */
+
+int *apply_all(int *arr_1, size_t size_1, int *arr_2, size_t size_2);
+
+void print_arr(const int *const arr_3, size_t size_3);
+
+int *create_arr(size_t size);
+
+int main(){
+    size_t s1 {0};
+    size_t s2 {0};
+    cout<<"How long do you want your array's to be?: "<<endl;
+    cin>>s1;
+    cin>>s2;
+
+    int *arr_1 = create_arr(s1);
+    int *arr_2 = create_arr(s2);
+    int *result = apply_all(arr_1,s1,arr_2,s2);
+
+    cout<<"Array 1: "<<endl;
+    print_arr(arr_1,s1);
+    cout<<"Array 2: "<<endl;
+    print_arr(arr_2,s2);
+    cout<<"New array is:"<<endl;
+    print_arr(result,s1*s2);
+    
+
+    delete [] result,arr_1,arr_2;
+}
+
+
+int *create_arr(size_t size){
+    cout<<"Enter your array's elements: "<<endl;
+    int *new_arr = new int[size];
+    for ( size_t i = 0; i <size ; ++ i ) {
+        int a{0};
+        cin>>a;
+        new_arr[i]=a;
+    }
+    return new_arr;
+
+}
+
+int *apply_all(int *arr_1, size_t size_1, int *arr_2, size_t size_2){
+
+    size_t size_3 = size_1 * size_2;
+
+    int *new_arr = new int[size_3];
+    size_t k{0};
+
+    for ( size_t i{0}; i<size_1; i++){
+
+        for ( size_t j{0} ; j <size_2 ; j++ ) {
+
+            new_arr[k] = *(arr_1+i) *  (*(arr_2+j));
+            k++;
+        }
+    }
+
+
+
+    return new_arr;
+}
+
+void print_arr(const int *const arr_3, size_t size_3){
+
+    for ( size_t i = 0; i < size_3; ++ i ) {
+        cout<<*(arr_3+i)<<" ";
+    }
+
+    cout<<endl;
+}
+
