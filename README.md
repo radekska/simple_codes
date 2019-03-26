@@ -1,3 +1,3 @@
 # simple_codes
 
-Welcome to my very humble repository!
+Welcome to my humble repository!
