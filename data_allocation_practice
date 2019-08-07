@@ -14,7 +14,7 @@ int *create_arr(size_t size);
 int main(){
     size_t s1 {0};
     size_t s2 {0};
-    cout<<"How long do you want your array's to be?: "<<endl;
+    cout<<"How long do you want your array to be?: "<<endl;
     cin>>s1;
     cin>>s2;
 
@@ -28,14 +28,14 @@ int main(){
     print_arr(arr_2,s2);
     cout<<"New array is:"<<endl;
     print_arr(result,s1*s2);
-    
+
 
     delete [] result,arr_1,arr_2;
 }
 
 
 int *create_arr(size_t size){
-    cout<<"Enter your array's elements: "<<endl;
+    cout<<"Enter your array elements: "<<endl;
     int *new_arr = new int[size];
     for ( size_t i = 0; i <size ; ++ i ) {
         int a{0};
@@ -75,4 +75,3 @@ void print_arr(const int *const arr_3, size_t size_3){
 
     cout<<endl;
 }
-
